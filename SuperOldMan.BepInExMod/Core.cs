@@ -1,12 +1,15 @@
 ﻿using BepInEx;
 using BepInEx.Unity.IL2CPP;
 using HarmonyLib;
-using Il2Cpp;
-using Il2CppAssets.Scripts._Data.Tomes;
-using Il2CppAssets.Scripts.Actors.Player;
-using Il2CppAssets.Scripts.Inventory__Items__Pickups;
-using Il2CppAssets.Scripts.Inventory__Items__Pickups.Stats;
-using Il2CppAssets.Scripts.Menu.Shop;
+using Il2CppSystem;
+using Il2CppInterop.Runtime;
+
+// BepInEx Interop for Megabonk uses 'Assets.Scripts' as the root namespace
+using Assets.Scripts._Data.Tomes;
+using Assets.Scripts.Actors.Player;
+using Assets.Scripts.Inventory__Items__Pickups;
+using Assets.Scripts.Inventory__Items__Pickups.Stats;
+using Assets.Scripts.Menu.Shop;
 
 namespace SuperOldMan.BepInExMod
 {
@@ -32,6 +35,8 @@ namespace SuperOldMan.BepInExMod
             public static void Spawn_Postfix(MyPlayer __instance)
             {
                 var xpTome = DataManager.Instance.tomeData[ETome.Xp];
+
+                // Use Il2CppSystem.Collections.Generic.List explicitly for game lists
                 var xpStatModifiers = new Il2CppSystem.Collections.Generic.List<StatModifier>();
 
                 xpStatModifiers.Add(new StatModifier

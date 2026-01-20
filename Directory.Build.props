@@ -1,5 +1,6 @@
 <Project>
-    <PropertyGroup>
-        <MEGABONK_DIR Condition="'$(MEGABONK_DIR)' == ''">C:\Users\Arvie\AppData\Roaming\r2modmanPlus-local\Megabonk\profiles\Game1\BepInEx</MEGABONK_DIR>
-    </PropertyGroup>
+	<PropertyGroup>
+		<MEGABONK_DIR>D:\SteamLibrary\steamapps\common\Megabonk</MEGABONK_DIR>
+		<MEGABONK_PROFILE>C:\Users\Arvie\AppData\Roaming\r2modmanPlus-local\Megabonk\profiles\Game1\BepInEx</MEGABONK_PROFILE>
+	</PropertyGroup>
 </Project>
