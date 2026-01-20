@@ -1,20 +1,28 @@
-﻿using HarmonyLib;
+﻿using BepInEx;
+using BepInEx.Unity.IL2CPP;
+using HarmonyLib;
 using Il2Cpp;
 using Il2CppAssets.Scripts._Data.Tomes;
 using Il2CppAssets.Scripts.Actors.Player;
 using Il2CppAssets.Scripts.Inventory__Items__Pickups;
 using Il2CppAssets.Scripts.Inventory__Items__Pickups.Stats;
 using Il2CppAssets.Scripts.Menu.Shop;
-using MelonLoader;
-using SuperOldMan.MelonLoaderMod;
 
-[assembly: MelonInfo(typeof(Core), "SuperOldMan", "1.0.1", "Slimaeus", null)]
-[assembly: MelonGame("Ved", "Megabonk")]
-
-namespace SuperOldMan.MelonLoaderMod
+namespace SuperOldMan.BepInExMod
 {
-    public class Core : MelonMod
+    [BepInPlugin(MyGUID, PluginName, VersionString)]
+    public class Core : BasePlugin
     {
+        private const string MyGUID = "Slimaeus.SuperOldMan";
+        private const string PluginName = "SuperOldMan";
+        private const string VersionString = "1.0.1";
+
+        public override void Load()
+        {
+            // Register Harmony Patches
+            Harmony.CreateAndPatchAll(typeof(PlayerPatches));
+            Log.LogInfo($"Plugin {PluginName} {VersionString} is loaded!");
+        }
 
         [HarmonyPatch(typeof(MyPlayer))]
         public static class PlayerPatches
@@ -25,6 +33,7 @@ namespace SuperOldMan.MelonLoaderMod
             {
                 var xpTome = DataManager.Instance.tomeData[ETome.Xp];
                 var xpStatModifiers = new Il2CppSystem.Collections.Generic.List<StatModifier>();
+
                 xpStatModifiers.Add(new StatModifier
                 {
                     stat = EStat.XpIncreaseMultiplier,
