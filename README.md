@@ -4,7 +4,7 @@
 ```xml
 <Project>
     <PropertyGroup>
-        <MEGABONK_DIR Condition="'$(MEGABONK_DIR)' == ''">X:\Your\Path\TO\Megabonk</MEGABONK_DIR>
+        <MEGABONK_DIR Condition="'$(MEGABONK_DIR)' == ''">X:\Your\Path\TO\Megabonk\BepInEx</MEGABONK_DIR>
     </PropertyGroup>
 </Project>
 ```
